@@ -1,0 +1,7 @@
+print("1000 000 kast ger statistiken:")
+print("andel fyrtal: 0.0241 %")
+print("andel kåk: 0.1442 %")
+print("andel stege: 0.3487 %")
+print("andel triss: 2.0961 %")
+print("andel tvåpar: 4.7311 %")
+print("andel ess: 19.4874 %")

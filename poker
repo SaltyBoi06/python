@@ -1,11 +1,13 @@
 import random
-from collections import counter
+from collections import Counter
 runda = 10000
 
 def kortlek():
     return [i for i in range(2, 14) for _ in range(4)]
+
 def hand():
     return random.sample(kortlek(), 5)
+
 def är_fyrtal(hand):
     return 4 in Counter(hand).values()
 def är_kåk(hand):
@@ -22,3 +24,40 @@ def är_tvåpar(hand):
     return list(Counter(hand).values()).count(2) == 2
 def är_par(hand):
     return list(Counter(hand).values()).count(2) == 1
+def innehåller_kort(hand, kort):
+    return kort in hand
+
+räkna = {
+    "fyrtal": 0,
+    "kåk": 0,
+    "stege": 0,
+    "triss": 0,
+    "tvåpar": 0,
+    "par": 0,
+    "ess": 0,
+}
+
+for _ in range(runda):
+    if är_fyrtal(hand()):
+        räkna["fyrtal"] += 1
+    elif är_kåk(hand()):
+        räkna["kåk"] += 1
+    elif är_stege(hand()):
+        räkna["stege"] += 1
+    elif är_triss(hand()):
+        räkna["triss"] += 1
+    elif är_tvåpar(hand()):
+        räkna["tvåpar"] += 1
+    elif är_par(hand()):
+        räkna["par"] += 1
+    if innehåller_kort(hand(), 14):
+        räkna["ess"] += 1
+
+print(f"1000 000 kast ger statistiken:")
+print(f"andel fyrtal: {räkna['fyrtal']/runda*100:.4f}%")
+print(f"andel kåk: {räkna['kåk']/runda*100:.4f}%")
+print(f"andel stege: {räkna['stege']/runda*100:.4f}%")
+print(f"andel triss: {räkna['triss']/runda*100:.4f}%")
+print(f"andel tvåpar: {räkna['tvåpar']/runda*100:.4f}%")
+print(f"andel par: {räkna['par']/runda*100:.4f}%")
+print(f"andel ess: {räkna['ess']/runda*100:.4f}%")
