@@ -1,3 +1,24 @@
 import random
+from collections import counter
 runda = 10000
 
+def kortlek():
+    return [i for i in range(2, 14) for _ in range(4)]
+def hand():
+    return random.sample(kortlek(), 5)
+def är_fyrtal(hand):
+    return 4 in Counter(hand).values()
+def är_kåk(hand):
+    counts = Counter(hand).values()
+    return 3 in counts and 2 in counts
+def är_stege(hand):
+    unika = sorted(set(hand))
+    if len(unika) != 5:
+        return False
+    return max(unika) - min(unika) == 4
+def är_triss(hand):
+    return 3 in Counter(hand).values()
+def är_tvåpar(hand):
+    return list(Counter(hand).values()).count(2) == 2
+def är_par(hand):
+    return list(Counter(hand).values()).count(2) == 1
